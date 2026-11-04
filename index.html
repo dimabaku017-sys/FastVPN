@@ -5,109 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FastVPN</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --bg: #eef2e6; /* Светло-зеленый фон как на фото */
+            --card-bg: #ffffff;
+            --text: #222222;
+            --muted: #777777;
+            --accent-green: #6b8e5a;
+            --accent-blue: #638f92; /* Цвет кнопки "Подключиться" */
+            --border: #dcded6;
+        }
+        * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg); color: var(--text); margin: 0; padding: 16px; padding-bottom: 90px; display: flex; flex-direction: column; min-height: 100vh; }
+        .hidden { display: none !important; }
+        
+        /* Карточки */
+        .card { background: var(--card-bg); border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+        .card-image { width: 100%; border-radius: 12px; margin-bottom: 15px; }
+        
+        /* Текст */
+        .title { font-weight: 600; font-size: 16px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;}
+        .info-row { display: flex; align-items: flex-start; margin-bottom: 10px; font-size: 14px; }
+        .info-icon { margin-right: 8px; font-size: 16px; }
+        
+        /* Ссылка */
+        .link-box { background: #f5f5f5; padding: 12px; border-radius: 8px; word-break: break-all; font-size: 13px; color: var(--accent-blue); margin-top: 15px; margin-bottom: 10px; border: 1px solid var(--border); }
+        .hint { background: #f9f5ff; color: #5c4d7a; padding: 12px; border-radius: 8px; font-size: 13px; border-left: 4px solid #b79ced; display: flex; align-items: center; gap: 8px; }
+
+        /* Кнопки */
+        .btn-row { display: flex; gap: 10px; margin-bottom: 10px; }
+        .btn { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            color: var(--text); 
+            padding: 14px; 
+            border-radius: 12px; 
+            font-size: 14px; 
+            font-weight: 500; 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 8px;
+            width: 100%;
+        }
+        .btn-blue { background: var(--accent-blue); color: white; border: none; }
+        .btn-green { background: var(--accent-green); color: white; border: none; }
+        .btn-small { flex: 1; }
+        
+        /* Нижнее меню */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg); display: flex; justify-content: space-around; padding: 10px 0 20px 0; border-top: 1px solid var(--border); z-index: 100; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--muted); font-size: 10px; font-weight: 500; cursor: pointer; gap: 6px; }
+        .nav-item.active { color: var(--accent-green); }
+        .nav-icon { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
+
+        /* Заглушки для вкладок */
+        .mock-text { text-align: center; color: var(--muted); margin-top: 50px; font-size: 18px; }
+    </style>
 </head>
 <body>
 
-    <!-- ГЛАВНАЯ -->
+    <!-- ВКЛАДКА: ГЛАВНАЯ -->
     <div id="tab-main">
-        <h1 style="margin-bottom:20px;">Главная</h1>
+        <div class="card">
+            <!-- Картинка-заглушка, замените ссылку на ваш баннер -->
+            <img src="https://i.ibb.co/6PZqXqz/redflag.jpg" alt="FastVPN" class="card-image" style="background:#ffeaea; height: 150px; object-fit: cover;">
+            
+            <div class="title">🛡 Ваша пробная подписка</div>
+            
+            <div class="info-row"><span class="info-icon">📦</span> План: <b>Пробный</b></div>
+            <div class="info-row"><span class="info-icon">🌐</span> Трафик: 18,56 МБ из 10 ГБ/мес</div>
+            <div class="info-row"><span class="info-icon">📱</span> Устройств: 1 / 3</div>
+            <div class="info-row"><span class="info-icon">⏳</span> Истекает: через 7 дней</div>
+            <div class="info-row"><span class="info-icon">♻️</span> Сброс трафика: через 30 дней</div>
+            
+            <div style="font-weight: 600; font-size: 14px; margin-top: 15px; display: flex; align-items: center; gap: 5px;">🔗 Ваша ссылка:</div>
+            <div class="link-box">https://o.ozonusercontent.net/EtDp-kJTXaQIX12</div>
+            <div class="hint">💡 Откройте эту ссылку в браузере на любом устройстве и следуйте инструкции на странице.</div>
+            
+            <div style="text-align: right; color: var(--muted); font-size: 12px; margin-top: 10px;">Изменено 22:38</div>
+        </div>
+
+        <!-- Кнопки -->
+        <button class="btn btn-blue" onclick="tg.showAlert('Подключение...')">🚀 Подключиться <span style="margin-left:auto; opacity:0.5;">◰</span></button>
+        <button class="btn btn-green" onclick="tg.showAlert('Управление подпиской')">⚙️ Управление подпиской <span style="margin-left:auto; opacity:0.5;">›</span></button>
         
-        <div class="card">
-            <div class="card-row">
-                <div>
-                    <div class="card-title">Ваша подписка</div>
-                    <div class="big-text" id="sub-days">0 дней</div>
-                    <div class="sub-text" id="sub-date">Нет активной подписки</div>
-                </div>
-                <div class="status-badge" id="sub-status">Ожидание</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-title">Трафик</div>
-            <div class="card-row" style="align-items: baseline;">
-                <div class="big-text" id="traffic-percent">0%</div>
-                <div class="sub-text" id="traffic-text">0 МБ / 15 ГБ</div>
-            </div>
-            <div class="progress-bg"><div class="progress-fill" id="traffic-bar"></div></div>
-        </div>
-
-        <button class="btn btn-main" onclick="showTab('sub')">Купить подписку</button>
-    </div>
-
-    <!-- ПОДПИСКА -->
-    <div id="tab-sub" class="hidden">
-        <h1 style="margin-bottom:20px;">Тарифы</h1>
-        <div class="card" onclick="sendCommandToBot('buy', {plan: '1m', price: 80})">
-            <div class="card-row" style="align-items: center;">
-                <div><div style="font-weight:600; font-size:18px;">1 месяц</div></div>
-                <div style="font-size:20px; font-weight:700;">80 ₽</div>
-            </div>
-        </div>
-        <div class="card" onclick="sendCommandToBot('buy', {plan: '3m', price: 200})" style="border: 1px solid var(--accent);">
-            <div class="card-row" style="align-items: center;">
-                <div><div style="font-weight:600; font-size:18px;">3 месяца</div></div>
-                <div style="font-size:20px; font-weight:700;">200 ₽</div>
-            </div>
-        </div>
-        <div class="card" onclick="sendCommandToBot('buy', {plan: '12m', price: 700})">
-            <div class="card-row" style="align-items: center;">
-                <div><div style="font-weight:600; font-size:18px;">12 месяцев</div></div>
-                <div style="font-size:20px; font-weight:700;">700 ₽</div>
-            </div>
+        <div class="btn-row">
+            <button class="btn btn-small" onclick="tg.showAlert('Пригласить друга')">🎁 Пригласить</button>
+            <button class="btn btn-small" onclick="tg.showAlert('Поддержка')">💬 Поддержка <span style="margin-left:auto; opacity:0.5;">›</span></button>
         </div>
     </div>
 
-    <!-- ПРОМОКОД -->
-    <div id="tab-balance" class="hidden">
-        <h1 style="margin-bottom:20px;">Промокод</h1>
-        <div class="card">
-            <input type="text" id="promo-input" placeholder="Введите промокод">
-            <button class="btn btn-red" onclick="applyPromo()">Активировать</button>
-        </div>
-    </div>
-
-    <!-- РЕФЕРАЛЫ -->
-    <div id="tab-ref" class="hidden">
-        <h1 style="margin-bottom:20px;">Рефералы</h1>
-        <div class="card">
-            <div class="card-title">Приглашено человек</div>
-            <div class="big-text" id="ref-count">0</div>
-        </div>
-        
-        <div class="card" id="coupon-card" style="display:none; border-color: var(--accent);">
-            <div class="card-title" style="color: var(--accent);">🎁 Доступен купон на 50 ₽</div>
-            <button class="btn btn-main" style="margin-top:10px;" onclick="sendCommandToBot('activate_coupon')">Активировать скидку</button>
-        </div>
-
-        <div class="card">
-            <div class="card-title">Ваша ссылка</div>
-            <input type="text" value="https://t.me/FastVPN_Net_bot?start=ref_123456" readonly id="ref-link">
-            <button class="btn btn-copy" onclick="copyLink()">📋 Копировать</button>
-        </div>
-    </div>
-
-    <!-- ПОДДЕРЖКА -->
-    <div id="tab-support" class="hidden">
-        <h1 style="margin-bottom:20px;">Поддержка</h1>
-        <div class="card">
-            <textarea id="support-text" style="width:100%; height:100px; background:#232f29; border:1px solid #2a362f; border-radius:12px; color:white; padding:10px; outline:none;" placeholder="Опишите проблему..."></textarea>
-            <button class="btn btn-main" style="margin-top:15px;" onclick="sendSupport()">Отправить</button>
-        </div>
-    </div>
+    <!-- ДРУГИЕ ВКЛАДКИ (ЗАГЛУШКИ) -->
+    <div id="tab-sub" class="hidden"><div class="mock-text">Меню тарифов (в разработке)</div></div>
+    <div id="tab-balance" class="hidden"><div class="mock-text">Меню промокода (в разработке)</div></div>
+    <div id="tab-ref" class="hidden"><div class="mock-text">Меню рефералов (в разработке)</div></div>
+    <div id="tab-support" class="hidden"><div class="mock-text">Меню поддержки (в разработке)</div></div>
 
     <!-- МЕНЮ -->
     <div class="bottom-nav">
-        <div class="nav-item active" id="nav-main" onclick="showTab('main')"><span class="nav-icon">🏠</span>Главная</div>
-        <div class="nav-item" id="nav-sub" onclick="showTab('sub')"><span class="nav-icon">🛒</span>Подписка</div>
-        <div class="nav-item" id="nav-balance" onclick="showTab('balance')"><span class="nav-icon">💳</span>Промокод</div>
-        <div class="nav-item" id="nav-ref" onclick="showTab('ref')"><span class="nav-icon">👥</span>Рефералы</div>
-        <div class="nav-item" id="nav-support" onclick="showTab('support')"><span class="nav-icon">💬</span>Поддержка</div>
+        <div class="nav-item active" onclick="showTab('main')"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Главная</div>
+        <div class="nav-item" onclick="showTab('sub')"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>Тарифы</div>
+        <div class="nav-item" onclick="showTab('balance')"><svg class="nav-icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>Промокод</div>
+        <div class="nav-item" onclick="showTab('ref')"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Рефералы</div>
+        <div class="nav-item" onclick="showTab('support')"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>Поддержка</div>
     </div>
 
-    <!-- ПОДКЛЮЧАЕМ СКРИПТЫ -->
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand(); 
+        tg.setHeaderColor('#eef2e6');
+
+        function showTab(tabName) {
+            document.querySelectorAll('[id^="tab-"]').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.remove('hidden');
+            
+            // Активация иконки
+            let navItems = document.querySelectorAll('.nav-item');
+            let index = ['main', 'sub', 'balance', 'ref', 'support'].indexOf(tabName);
+            if(index !== -1) navItems[index].classList.add('active');
+
+            if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
+        }
+    </script>
 </body>
 </html>
