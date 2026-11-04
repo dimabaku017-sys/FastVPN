@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <!-- БАЛАНС (Промокод) -->
+    <!-- ПРОМОКОД -->
     <div id="tab-balance" class="hidden">
         <h1 style="margin-bottom:20px;">Промокод</h1>
         <div class="card">
@@ -106,60 +106,8 @@
         <div class="nav-item" id="nav-support" onclick="showTab('support')"><span class="nav-icon">💬</span>Поддержка</div>
     </div>
 
+    <!-- ПОДКЛЮЧАЕМ СКРИПТЫ -->
     <script src="data.js"></script>
-    <script>
-        let tg = window.Telegram.WebApp;
-        tg.expand(); 
-        tg.setHeaderColor('#0f1713');
-
-        // Рендер данных при загрузке
-        document.addEventListener("DOMContentLoaded", () => {
-            if (userData.isActive) {
-                document.getElementById('sub-days').innerText = userData.daysLeft + " дня";
-                document.getElementById('sub-date').innerText = "до " + userData.dateEnd;
-                document.getElementById('sub-status').innerText = "Активна";
-            } else {
-                document.getElementById('sub-days').innerText = "0 дней";
-                document.getElementById('sub-date').innerText = "Нет подписки";
-                document.getElementById('sub-status').innerText = "Не активна";
-                document.getElementById('sub-status').classList.add('inactive');
-            }
-
-            let percent = Math.round((userData.trafficUsed / userData.trafficLimit) * 100);
-            document.getElementById('traffic-percent').innerText = percent + "%";
-            document.getElementById('traffic-text').innerText = userData.trafficUsed + " МБ / " + userData.trafficLimit + " ГБ";
-            document.getElementById('traffic-bar').style.width = percent + "%";
-            
-            document.getElementById('ref-count').innerText = userData.refCount;
-            if (userData.hasCoupon) {
-                document.getElementById('coupon-card').style.display = 'block';
-            }
-        });
-
-        function showTab(tabName) {
-            document.querySelectorAll('[id^="tab-"]').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            document.getElementById('tab-' + tabName).classList.remove('hidden');
-            document.getElementById('nav-' + tabName).classList.add('active');
-            if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
-        }
-
-        function applyPromo() {
-            let code = document.getElementById('promo-input').value;
-            if(code) sendCommandToBot('promo', {code: code});
-        }
-
-        function sendSupport() {
-            let text = document.getElementById('support-text').value;
-            if(text) sendCommandToBot('support', {text: text});
-        }
-
-        function copyLink() {
-            const input = document.getElementById('ref-link');
-            input.select();
-            document.execCommand("copy");
-            if (tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
