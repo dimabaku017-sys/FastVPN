@@ -1,0 +1,39 @@
+:root {
+    --bg: #0f1713;
+    --card: #1a241f;
+    --text: #ffffff;
+    --muted: #8e9e95;
+    --accent: #32d74b;
+    --danger: #ff453a;
+}
+* { box-sizing: border-box; font-family: -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; }
+body { background: var(--bg); color: var(--text); margin: 0; padding: 16px; padding-bottom: 90px; display: flex; flex-direction: column; min-height: 100vh; }
+.hidden { display: none !important; }
+
+/* Карточки */
+.card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 16px; border: 1px solid #2c3a32; position: relative; }
+.card-row { display: flex; justify-content: space-between; align-items: flex-start; }
+.card-title { font-size: 14px; color: var(--muted); margin-bottom: 8px; font-weight: 500; }
+.big-text { font-size: 32px; font-weight: 700; margin: 4px 0; }
+.sub-text { font-size: 14px; color: var(--muted); }
+.status-badge { background: rgba(50, 215, 75, 0.15); color: var(--accent); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.status-badge.inactive { background: rgba(255, 69, 58, 0.15); color: var(--danger); }
+
+/* Прогресс-бар */
+.progress-bg { background: #2a362f; height: 10px; border-radius: 5px; margin-top: 16px; overflow: hidden; }
+.progress-fill { background: var(--accent); height: 100%; width: 0%; border-radius: 5px; transition: width 0.3s; }
+
+/* Кнопки */
+.btn { background: var(--card); border: 1px solid #2a362f; color: var(--text); padding: 18px 20px; border-radius: 16px; font-size: 16px; font-weight: 500; width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; cursor: pointer; transition: 0.2s; }
+.btn:active { background: #232f29; }
+.btn-main { background: var(--accent); color: #000; border: none; justify-content: center; font-weight: 600; margin-top: 24px; }
+.btn-red { background: var(--danger); color: white; border: none; justify-content: center; }
+.btn-copy { background: #232f29; justify-content: center; border: none; }
+
+/* Меню */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); display: flex; justify-content: space-around; padding: 12px 0 20px 0; border-top: 1px solid #2a362f; z-index: 100; }
+.nav-item { display: flex; flex-direction: column; align-items: center; color: var(--muted); font-size: 11px; cursor: pointer; gap: 4px; transition: color 0.2s; }
+.nav-item.active { color: var(--accent); }
+.nav-icon { font-size: 22px; }
+
+input { width: 100%; background: #232f29; border: 1px solid #2a362f; padding: 16px; border-radius: 12px; color: white; font-size: 16px; margin-bottom: 12px; outline: none; }
